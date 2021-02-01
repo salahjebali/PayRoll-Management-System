@@ -6,7 +6,7 @@ public class Payroll extends TimerTask implements ObservablePayroll {
 
 	private Collection<DecorableEmployee> myListOfEmployees;
 	private Collection<Observer> myListOfObserver;
-	private static Payroll instance;
+	private static Payroll instance; // this is due to Singleton Pattern -> we want just an instance of it.
 	private static Timer timer;
 
 	private static int days = 0;
@@ -18,7 +18,7 @@ public class Payroll extends TimerTask implements ObservablePayroll {
 
 	public static Payroll getInstance() {
 		if (instance == null) {
-			instance = new Payroll();
+			instance = new Payroll(); // Singleton Pattern Constructor
 		}
 		return instance;
 	}
@@ -43,7 +43,7 @@ public class Payroll extends TimerTask implements ObservablePayroll {
 	}
 
 	@Override
-	public void notifyObs() {
+	public void notifyObs() { // This is called at run() method. The responsability is in Concrete Observers.
 		myListOfObserver.forEach(x -> x.update());
 	}
 
@@ -59,7 +59,7 @@ public class Payroll extends TimerTask implements ObservablePayroll {
 		return myListOfEmployees;
 	}
 
-	public void upDay() { // useless, moreover it should be private
+	private void upDay() { // useless, moreover it should be private
 		days++;
 	}
 
